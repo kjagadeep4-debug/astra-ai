@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astra Business AI — Smart Business Management Dashboard</title>
+  <meta name="description" content="Astra Business AI - Modern, lightweight, high-performance dark business management dashboard with CRM, pipeline, payments, and smart local intelligence.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- APP SHELL -->
+  <div id="app" class="app-layout">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">ASTRA</span>
+            <span class="brand-badge">BUSINESS AI</span>
+          </div>
+        </div>
+        <button id="sidebarCloseBtn" class="icon-btn mobile-only" aria-label="Close Sidebar">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Quick AI Status Badge -->
+      <div class="ai-status-pill" title="Local Deterministic Engine Active">
+        <span class="status-dot pulse"></span>
+        <span class="ai-status-label">ASTRA AI: OPTIMAL</span>
+        <span class="ai-health-val" id="sidebarHealthScore">94%</span>
+      </div>
+
+      <!-- Nav Items -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">CORE PLATFORM</div>
+        <button class="nav-item active" data-view="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Overview</span>
+        </button>
+
+        <button class="nav-item" data-view="customers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Customers</span>
+          <span class="badge" id="clientCountBadge">0</span>
+        </button>
+
+        <button class="nav-item" data-view="leads">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon><line x1="16" y1="12" x2="8" y2="12"></line></svg>
+          <span>Lead Pipeline</span>
+          <span class="badge badge-accent" id="leadCountBadge">0</span>
+        </button>
+
+        <button class="nav-item" data-view="appointments">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>Appointments</span>
+          <span class="badge" id="apptCountBadge">0</span>
+        </button>
+
+        <button class="nav-item" data-view="payments">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          <span>Payment Tracking</span>
+        </button>
+
+        <button class="nav-item" data-view="tasks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          <span>Follow-up Tasks</span>
+          <span class="badge badge-warning" id="pendingTaskBadge">0</span>
+        </button>
+
+        <button class="nav-item" data-view="analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Sales Analytics</span>
+        </button>
+
+        <div class="nav-section-title">INTELLIGENCE</div>
+        <button class="nav-item" data-view="ai-assistant">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.5 7.5"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Astra AI Advisor</span>
+          <span class="badge badge-ai">Smart</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="system-stats">
+          <div class="stat-row">
+            <span>RAM Footprint</span>
+            <span class="stat-highlight">&lt; 18 MB</span>
+          </div>
+          <div class="stat-row">
+            <span>Storage Mode</span>
+            <span>Local Offline</span>
+          </div>
+        </div>
+        <button id="resetDemoBtn" class="btn-subtle full-width" title="Reset all data to realistic defaults">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          <span>Reset Demo Data</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+      
+      <!-- TOP HEADER BAR -->
+      <header class="top-header">
+        <div class="header-left">
+          <button id="sidebarToggleBtn" class="icon-btn" aria-label="Toggle navigation">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="view-title-wrap">
+            <h1 id="currentViewTitle">Overview</h1>
+            <span id="currentDateDisplay" class="view-subtitle">Today</span>
+          </div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="global-search-container">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="globalSearchInput" placeholder="Quick search clients, deals, tasks, invoices (Press '/' to focus)..." autocomplete="off">
+          <span class="search-shortcut">/</span>
+          <!-- Live search dropdown results -->
+          <div id="searchDropdown" class="search-dropdown hidden"></div>
+        </div>
+
+        <div class="header-right">
+          <!-- Quick Add Dropdown -->
+          <div class="dropdown-wrapper">
+            <button id="quickAddBtn" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>+ Quick Add</span>
+            </button>
+            <div id="quickAddMenu" class="dropdown-menu hidden">
+              <button onclick="AstraApp.openModal('customerModal')">👤 New Customer</button>
+              <button onclick="AstraApp.openModal('leadModal')">🎯 New Lead Deal</button>
+              <button onclick="AstraApp.openModal('appointmentModal')">📅 Book Appointment</button>
+              <button onclick="AstraApp.openModal('paymentModal')">💳 Record Payment</button>
+              <button onclick="AstraApp.openModal('taskModal')">⚡ New Task</button>
+            </div>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="dropdown-wrapper">
+            <button id="notifBtn" class="icon-btn notif-btn" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span id="notifDot" class="notif-dot"></span>
+            </button>
+            <div id="notifMenu" class="dropdown-menu notif-menu hidden">
+              <div class="notif-header">
+                <span>System & AI Alerts</span>
+                <button class="text-btn" onclick="AstraApp.clearNotifications()">Clear</button>
+              </div>
+              <div id="notifList" class="notif-list">
+                <!-- Dynamically filled -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Backup / Data Tools -->
+          <div class="dropdown-wrapper">
+            <button id="dataToolsBtn" class="icon-btn" title="Backup & Data Options">
+              <svg viewBox="0 0 24 24" width="19" height="19" stroke="currentColor" stroke-width="2" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </button>
+            <div id="dataToolsMenu" class="dropdown-menu hidden">
+              <button onclick="AstraApp.exportData()"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Export Backup (JSON)</button>
+              <label class="dropdown-file-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <span>Import Backup</span>
+                <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="AstraApp.importData(event)">
+              </label>
+            </div>
+          </div>
+
+          <!-- User Profile Pill -->
+          <div class="user-pill">
+            <div class="user-avatar">AB</div>
+            <div class="user-details hide-on-mobile">
+              <span class="user-name">Astra Business</span>
+              <span class="user-role">Enterprise Suite</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW PANELS CONTAINER -->
+      <div class="content-body">
+        
+        <!-- ==============================================
+             1. OVERVIEW DASHBOARD VIEW
+             ============================================== -->
+        <section id="view-overview" class="view-panel active">
+          
+          <!-- Top KPI Cards Banner -->
+          <div class="kpi-grid">
+            <div class="kpi-card glass-card">
+              <div class="kpi-top">
+                <span class="kpi-title">Monthly Revenue</span>
+                <div class="kpi-icon-wrap icon-cyan">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+              </div>
+              <div class="kpi-val" id="kpiRevenue">$84,350</div>
+              <div class="kpi-subtext positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                <span>+14.8% vs last month</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card">
+              <div class="kpi-top">
+                <span class="kpi-title">Active Clients</span>
+                <div class="kpi-icon-wrap icon-indigo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                </div>
+              </div>
+              <div class="kpi-val" id="kpiClients">28</div>
+              <div class="kpi-subtext positive">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                <span>4 onboarded this week</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card">
+              <div class="kpi-top">
+                <span class="kpi-title">Pipeline Value</span>
+                <div class="kpi-icon-wrap icon-purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+              </div>
+              <div class="kpi-val" id="kpiPipeline">$142,500</div>
+              <div class="kpi-subtext neutral">
+                <span>12 active opportunities</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card">
+              <div class="kpi-top">
+                <span class="kpi-title">Overdue Receivables</span>
+                <div class="kpi-icon-wrap icon-rose">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </div>
+              </div>
+              <div class="kpi-val" id="kpiOverdue">$7,400</div>
+              <div class="kpi-subtext alert">
+                <span id="kpiOverdueCount">2 invoices pending follow-up</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Astra AI Executive Intelligence Bar -->
+          <div class="ai-banner glass-card">
+            <div class="ai-banner-left">
+              <div class="ai-chip">
+                <span class="ai-glow-sparkle">✦</span> ASTRA LOCAL INTELLIGENCE
+              </div>
+              <h3 id="aiBannerHeadline">Business Health Index: 92/100 (Optimal)</h3>
+              <p id="aiBannerSummary">Strong cash flow detected. Recommended action: 2 high-priority leads in negotiation are ready for contract follow-up.</p>
+            </div>
+            <div class="ai-banner-actions">
+              <button class="btn btn-ai-action" onclick="AstraApp.runAiAudit()">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <span>Run Smart Audit</span>
+              </button>
+              <button class="btn btn-outline" onclick="AstraApp.switchView('ai-assistant')">
+                <span>Open AI Advisor</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Overview Grid: Quick Charts + Tasks + Schedule -->
+          <div class="dashboard-two-col">
+            <!-- Left: Mini Revenue Trend & Recent Invoices -->
+            <div class="col-main">
+              <div class="section-card glass-card">
+                <div class="card-header-flex">
+                  <div>
+                    <h3>Revenue Growth & Projections</h3>
+                    <span class="card-sub">Last 6 months performance (Local Canvas Render)</span>
+                  </div>
+                  <div class="chart-legend">
+                    <span class="legend-dot color-revenue"></span> Revenue
+                    <span class="legend-dot color-target"></span> Target
+                  </div>
+                </div>
+                <div class="canvas-container">
+                  <canvas id="miniRevenueChart" width="600" height="220"></canvas>
+                </div>
+              </div>
+
+              <!-- Pipeline Status Quick Look -->
+              <div class="section-card glass-card mt-4">
+                <div class="card-header-flex">
+                  <h3>Lead Pipeline Snapshot</h3>
+                  <button class="btn-link" onclick="AstraApp.switchView('leads')">View Full Pipeline &rarr;</button>
+                </div>
+                <div class="pipeline-progress-bar" id="overviewPipelineBar">
+                  <!-- Generated dynamically -->
+                </div>
+                <div class="pipeline-metrics-row" id="overviewPipelineMetrics">
+                  <!-- Generated dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Today's Schedule & High Priority Tasks -->
+            <div class="col-side">
+              <!-- Upcoming Schedule -->
+              <div class="section-card glass-card">
+                <div class="card-header-flex">
+                  <h3>Today's Agenda</h3>
+                  <button class="btn-link" onclick="AstraApp.openModal('appointmentModal')">+ Book</button>
+                </div>
+                <div id="overviewApptList" class="compact-list">
+                  <!-- Dynamic appointments -->
+                </div>
+              </div>
+
+              <!-- Urgent Follow-ups -->
+              <div class="section-card glass-card mt-4">
+                <div class="card-header-flex">
+                  <h3>Urgent Follow-ups</h3>
+                  <button class="btn-link" onclick="AstraApp.openModal('taskModal')">+ Task</button>
+                </div>
+                <div id="overviewTaskList" class="compact-list">
+                  <!-- Dynamic tasks -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==============================================
+             2. CUSTOMER MANAGEMENT (CRM) VIEW
+             ============================================== -->
+        <section id="view-customers" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Customer Directory</h2>
+              <p class="section-desc">Manage corporate clients, accounts, VIP relationships, and contact records.</p>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn btn-primary" onclick="AstraApp.openModal('customerModal')">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add Customer</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="toolbar-card glass-card">
+            <div class="toolbar-search">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="customerSearchInput" placeholder="Filter by client name, company, email...">
+            </div>
+            <div class="toolbar-filters">
+              <button class="filter-tab active" data-filter="all" onclick="AstraApp.filterCustomers('all', this)">All Clients (<span id="countClientAll">0</span>)</button>
+              <button class="filter-tab" data-filter="active" onclick="AstraApp.filterCustomers('active', this)">Active</button>
+              <button class="filter-tab" data-filter="vip" onclick="AstraApp.filterCustomers('vip', this)">⭐ VIP</button>
+              <button class="filter-tab" data-filter="prospect" onclick="AstraApp.filterCustomers('prospect', this)">Prospects</button>
+              <button class="filter-tab" data-filter="inactive" onclick="AstraApp.filterCustomers('inactive', this)">Inactive</button>
+            </div>
+          </div>
+
+          <!-- Customer Table -->
+          <div class="table-responsive glass-card">
+            <table class="data-table" id="customerTable">
+              <thead>
+                <tr>
+                  <th>Client / Company</th>
+                  <th>Contact Details</th>
+                  <th>Status</th>
+                  <th>Total Spent</th>
+                  <th>Since</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customerTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+            <div id="customerEmptyState" class="empty-state hidden">
+              <p>No customers found matching the search criteria.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             3. LEAD TRACKING (PIPELINE) VIEW
+             ============================================== -->
+        <section id="view-leads" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Sales Lead Pipeline</h2>
+              <p class="section-desc">Track sales stages, negotiate deal sizes, and monitor stage conversion velocity.</p>
+            </div>
+            <div class="action-btn-group">
+              <div class="view-toggle-pills">
+                <button id="leadViewKanbanBtn" class="pill-btn active" onclick="AstraApp.toggleLeadView('kanban')">Kanban</button>
+                <button id="leadViewListBtn" class="pill-btn" onclick="AstraApp.toggleLeadView('list')">List</button>
+              </div>
+              <button class="btn btn-primary" onclick="AstraApp.openModal('leadModal')">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add New Lead</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search & Summary Stats -->
+          <div class="toolbar-card glass-card">
+            <div class="toolbar-search">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="leadSearchInput" placeholder="Search deals by title, company, or lead source...">
+            </div>
+            <div class="lead-pipeline-totals">
+              <span class="total-metric">Total Deals: <strong id="leadTotalCount">0</strong></span>
+              <span class="total-metric">Weighted Value: <strong id="leadWeightedValue" class="text-emerald">$0</strong></span>
+            </div>
+          </div>
+
+          <!-- Kanban Board View -->
+          <div id="leadKanbanContainer" class="kanban-board">
+            <!-- Stage: New -->
+            <div class="kanban-column" data-stage="new">
+              <div class="column-header">
+                <div class="col-title-wrap">
+                  <span class="column-dot dot-cyan"></span>
+                  <h4>New Inquiries</h4>
+                </div>
+                <span class="col-count" id="countStage-new">0</span>
+              </div>
+              <div class="kanban-cards-area" id="kanban-new"></div>
+            </div>
+
+            <!-- Stage: Contacted -->
+            <div class="kanban-column" data-stage="contacted">
+              <div class="column-header">
+                <div class="col-title-wrap">
+                  <span class="column-dot dot-blue"></span>
+                  <h4>Contacted</h4>
+                </div>
+                <span class="col-count" id="countStage-contacted">0</span>
+              </div>
+              <div class="kanban-cards-area" id="kanban-contacted"></div>
+            </div>
+
+            <!-- Stage: Proposal -->
+            <div class="kanban-column" data-stage="proposal">
+              <div class="column-header">
+                <div class="col-title-wrap">
+                  <span class="column-dot dot-purple"></span>
+                  <h4>Proposal Sent</h4>
+                </div>
+                <span class="col-count" id="countStage-proposal">0</span>
+              </div>
+              <div class="kanban-cards-area" id="kanban-proposal"></div>
+            </div>
+
+            <!-- Stage: Negotiation -->
+            <div class="kanban-column" data-stage="negotiation">
+              <div class="column-header">
+                <div class="col-title-wrap">
+                  <span class="column-dot dot-amber"></span>
+                  <h4>Negotiation</h4>
+                </div>
+                <span class="col-count" id="countStage-negotiation">0</span>
+              </div>
+              <div class="kanban-cards-area" id="kanban-negotiation"></div>
+            </div>
+
+            <!-- Stage: Won -->
+            <div class="kanban-column" data-stage="won">
+              <div class="column-header">
+                <div class="col-title-wrap">
+                  <span class="column-dot dot-emerald"></span>
+                  <h4>Closed Won</h4>
+                </div>
+                <span class="col-count" id="countStage-won">0</span>
+              </div>
+              <div class="kanban-cards-area" id="kanban-won"></div>
+            </div>
+          </div>
+
+          <!-- Lead List View (Hidden by default) -->
+          <div id="leadListContainer" class="table-responsive glass-card hidden">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Deal / Opportunity</th>
+                  <th>Company & Contact</th>
+                  <th>Stage</th>
+                  <th>Value</th>
+                  <th>Priority</th>
+                  <th>Expected Close</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leadTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             4. APPOINTMENT SCHEDULING VIEW
+             ============================================== -->
+        <section id="view-appointments" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Appointments & Meetings</h2>
+              <p class="section-desc">Schedule discovery calls, contract reviews, and product demonstrations.</p>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn btn-primary" onclick="AstraApp.openModal('appointmentModal')">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Book Appointment</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="toolbar-card glass-card">
+            <div class="toolbar-search">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="appointmentSearchInput" placeholder="Search meeting title, client, type...">
+            </div>
+            <div class="toolbar-filters">
+              <button class="filter-tab active" data-filter="all" onclick="AstraApp.filterAppointments('all', this)">All</button>
+              <button class="filter-tab" data-filter="upcoming" onclick="AstraApp.filterAppointments('upcoming', this)">Upcoming</button>
+              <button class="filter-tab" data-filter="today" onclick="AstraApp.filterAppointments('today', this)">Today</button>
+              <button class="filter-tab" data-filter="completed" onclick="AstraApp.filterAppointments('completed', this)">Completed</button>
+            </div>
+          </div>
+
+          <!-- Appointments Grid Cards -->
+          <div class="appointments-grid" id="appointmentCardsGrid">
+            <!-- Dynamically populated -->
+          </div>
+          <div id="appointmentEmptyState" class="empty-state hidden">
+            <p>No scheduled appointments found for this filter.</p>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             5. PAYMENT & INVOICE TRACKING VIEW
+             ============================================== -->
+        <section id="view-payments" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Payment Tracking & Invoices</h2>
+              <p class="section-desc">Monitor accounts receivable, record incoming revenue, and track overdue balances.</p>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn btn-primary" onclick="AstraApp.openModal('paymentModal')">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Record Invoice / Payment</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Financial Snapshot Cards -->
+          <div class="finance-summary-grid">
+            <div class="finance-card glass-card">
+              <span class="finance-label">Total Revenue Collected</span>
+              <h3 id="financeTotalCollected" class="text-emerald">$0</h3>
+              <span class="finance-sub">Paid in full</span>
+            </div>
+            <div class="finance-card glass-card">
+              <span class="finance-label">Pending Invoices</span>
+              <h3 id="financeTotalPending" class="text-amber">$0</h3>
+              <span class="finance-sub" id="financePendingCount">0 invoices awaiting payment</span>
+            </div>
+            <div class="finance-card glass-card">
+              <span class="finance-label">Overdue Balance</span>
+              <h3 id="financeTotalOverdue" class="text-rose">$0</h3>
+              <span class="finance-sub" id="financeOverdueCount">0 invoices require urgent action</span>
+            </div>
+          </div>
+
+          <!-- Toolbar -->
+          <div class="toolbar-card glass-card mt-4">
+            <div class="toolbar-search">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="paymentSearchInput" placeholder="Search invoice #, client, payment method...">
+            </div>
+            <div class="toolbar-filters">
+              <button class="filter-tab active" data-filter="all" onclick="AstraApp.filterPayments('all', this)">All Transactions</button>
+              <button class="filter-tab" data-filter="paid" onclick="AstraApp.filterPayments('paid', this)">Paid</button>
+              <button class="filter-tab" data-filter="pending" onclick="AstraApp.filterPayments('pending', this)">Pending</button>
+              <button class="filter-tab" data-filter="overdue" onclick="AstraApp.filterPayments('overdue', this)">Overdue</button>
+            </div>
+          </div>
+
+          <!-- Payments Table -->
+          <div class="table-responsive glass-card">
+            <table class="data-table" id="paymentsTable">
+              <thead>
+                <tr>
+                  <th>Invoice ID</th>
+                  <th>Client / Company</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Payment Method</th>
+                  <th>Status</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="paymentTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+            <div id="paymentEmptyState" class="empty-state hidden">
+              <p>No invoices or payments match your selection.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             6. FOLLOW-UP TASKS VIEW
+             ============================================== -->
+        <section id="view-tasks" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Follow-up Task Manager</h2>
+              <p class="section-desc">Organize client touchpoints, contract actions, and operational priorities.</p>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn btn-primary" onclick="AstraApp.openModal('taskModal')">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Add Task</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Add Task Bar -->
+          <div class="quick-task-bar glass-card">
+            <input type="text" id="quickTaskInput" placeholder="Quickly add a task (e.g., 'Call Elena Vance regarding Q3 expansion'). Press Enter...">
+            <select id="quickTaskPriority">
+              <option value="medium">Medium Priority</option>
+              <option value="high">High Priority</option>
+              <option value="urgent">Urgent</option>
+              <option value="low">Low Priority</option>
+            </select>
+            <button class="btn btn-primary" onclick="AstraApp.addQuickTask()">Add</button>
+          </div>
+
+          <!-- Task Tabs Toolbar -->
+          <div class="toolbar-card glass-card mt-3">
+            <div class="toolbar-search">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="taskSearchInput" placeholder="Filter tasks by title or category...">
+            </div>
+            <div class="toolbar-filters">
+              <button class="filter-tab active" data-filter="all" onclick="AstraApp.filterTasks('all', this)">All Tasks (<span id="taskCountAll">0</span>)</button>
+              <button class="filter-tab" data-filter="pending" onclick="AstraApp.filterTasks('pending', this)">Pending (<span id="taskCountPending">0</span>)</button>
+              <button class="filter-tab" data-filter="urgent" onclick="AstraApp.filterTasks('urgent', this)">Urgent / High</button>
+              <button class="filter-tab" data-filter="completed" onclick="AstraApp.filterTasks('completed', this)">Completed</button>
+            </div>
+          </div>
+
+          <!-- Tasks List Container -->
+          <div class="task-list-container glass-card" id="taskListContainer">
+            <!-- Dynamically populated -->
+          </div>
+          <div id="taskEmptyState" class="empty-state hidden">
+            <p>No tasks found in this view.</p>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             7. SALES ANALYTICS VIEW
+             ============================================== -->
+        <section id="view-analytics" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <h2>Executive Sales Analytics</h2>
+              <p class="section-desc">Performance metrics, revenue projections, and conversion funnel analysis.</p>
+            </div>
+            <div class="action-btn-group">
+              <span class="badge badge-accent">100% Local Canvas Render — 0 API Calls</span>
+            </div>
+          </div>
+
+          <!-- Analytics KPI Cards -->
+          <div class="analytics-metrics-grid">
+            <div class="analytic-tile glass-card">
+              <span class="tile-label">Annual Run Rate</span>
+              <h3 id="statRunRate">$1,012,200</h3>
+              <span class="tile-foot positive">+22.4% annualized growth</span>
+            </div>
+            <div class="analytic-tile glass-card">
+              <span class="tile-label">Pipeline Conversion Rate</span>
+              <h3 id="statConversionRate">34.2%</h3>
+              <span class="tile-foot positive">+4.1% industry benchmark</span>
+            </div>
+            <div class="analytic-tile glass-card">
+              <span class="tile-label">Average Deal Size</span>
+              <h3 id="statAvgDealSize">$11,875</h3>
+              <span class="tile-foot neutral">Across 18 enterprise deals</span>
+            </div>
+            <div class="analytic-tile glass-card">
+              <span class="tile-label">Customer Retention</span>
+              <h3 id="statRetentionRate">96.4%</h3>
+              <span class="tile-foot positive">Top quartile SaaS benchmark</span>
+            </div>
+          </div>
+
+          <!-- Visual Charts Grid (Canvas Zero-Dependency) -->
+          <div class="charts-grid mt-4">
+            <!-- Chart 1: Revenue vs Target Trend -->
+            <div class="chart-card glass-card">
+              <div class="card-header-flex">
+                <div>
+                  <h3>12-Month Revenue Trajectory</h3>
+                  <span class="card-sub">Actual revenue vs strategic targets</span>
+                </div>
+              </div>
+              <div class="canvas-container-lg">
+                <canvas id="analyticsRevenueChart" width="700" height="280"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 2: Revenue by Product / Service Donut -->
+            <div class="chart-card glass-card">
+              <div class="card-header-flex">
+                <div>
+                  <h3>Revenue by Service Category</h3>
+                  <span class="card-sub">Enterprise tier distribution</span>
+                </div>
+              </div>
+              <div class="donut-chart-layout">
+                <canvas id="analyticsDonutChart" width="220" height="220"></canvas>
+                <div class="donut-legend" id="donutLegend">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Chart 3: Pipeline Conversion Funnel -->
+            <div class="chart-card glass-card">
+              <div class="card-header-flex">
+                <div>
+                  <h3>Sales Funnel Conversion</h3>
+                  <span class="card-sub">Drop-off by pipeline stage</span>
+                </div>
+              </div>
+              <div class="funnel-container" id="funnelContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Chart 4: Lead Sources Breakdown -->
+            <div class="chart-card glass-card">
+              <div class="card-header-flex">
+                <div>
+                  <h3>Lead Acquisition Sources</h3>
+                  <span class="card-sub">Volume by channel</span>
+                </div>
+              </div>
+              <div class="sources-breakdown" id="sourcesBreakdown">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================================
+             8. ASTRA AI ADVISOR VIEW
+             ============================================== -->
+        <section id="view-ai-assistant" class="view-panel">
+          <div class="section-header-row">
+            <div>
+              <div class="ai-badge-header">
+                <span class="ai-sparkle">✦</span>
+                <h2>Astra Business AI Advisor</h2>
+              </div>
+              <p class="section-desc">On-device deterministic business intelligence engine. Evaluates liquidity, stalled opportunities, and generates automated client correspondence drafts.</p>
+            </div>
+            <div class="action-btn-group">
+              <button class="btn btn-ai-action" onclick="AstraApp.runAiAudit()">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                <span>Re-Analyze Health</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Transparency Notice (Compliance / Accuracy) -->
+          <div class="compliance-callout glass-card">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <div>
+              <strong>Pure On-Device Heuristic Intelligence</strong>: This dashboard runs 100% on local JavaScript heuristics. It does not contact external paid AI services or expose your data to third-party clouds. Lightweight, private, and instant.
+            </div>
+          </div>
+
+          <div class="ai-advisor-layout">
+            <!-- Left: Health Diagnostics & Actionable Insights -->
+            <div class="ai-diagnostics-col">
+              
+              <!-- Health Card -->
+              <div class="ai-score-card glass-card">
+                <div class="score-circle-wrap">
+                  <div class="score-value" id="aiHealthScoreNumber">92</div>
+                  <div class="score-label">Health Score</div>
+                </div>
+                <div class="score-metrics-list">
+                  <div class="health-item">
+                    <span>Cash Flow Health:</span>
+                    <strong class="text-emerald" id="aiMetricCashflow">Excellent</strong>
+                  </div>
+                  <div class="health-item">
+                    <span>Pipeline Velocity:</span>
+                    <strong class="text-cyan" id="aiMetricVelocity">Active ($142k)</strong>
+                  </div>
+                  <div class="health-item">
+                    <span>Task Completion:</span>
+                    <strong class="text-amber" id="aiMetricTasks">82% on track</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strategic Insights List -->
+              <div class="section-card glass-card mt-4">
+                <h3>Actionable AI Insights</h3>
+                <div id="aiInsightsList" class="ai-insights-list mt-3">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Smart Correspondence Generator -->
+            <div class="ai-generator-col">
+              <div class="section-card glass-card">
+                <div class="card-header-flex">
+                  <div>
+                    <h3>Smart Email & Follow-up Drafter</h3>
+                    <span class="card-sub">Generate tailored correspondence based on your CRM data</span>
+                  </div>
+                </div>
+
+                <div class="drafter-form mt-3">
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label>Select Client / Lead</label>
+                      <select id="drafterTargetSelect" onchange="AstraApp.onDrafterTargetChange()">
+                        <!-- Dynamically populated -->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Template Objective</label>
+                      <select id="drafterTemplateSelect" onchange="AstraApp.generateAiDraft()">
+                        <option value="followup">Sales Follow-up (Post-Proposal)</option>
+                        <option value="invoice">Overdue Invoice Polite Reminder</option>
+                        <option value="onboarding">VIP Client Welcome & Kickoff</option>
+                        <option value="reconnect">Dormant Account Check-in</option>
+                        <option value="meeting_recap">Meeting Recap & Next Steps</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Tone of Voice</label>
+                    <div class="tone-pills">
+                      <button class="tone-btn active" data-tone="professional" onclick="AstraApp.setDraftTone('professional', this)">Executive Professional</button>
+                      <button class="tone-btn" data-tone="friendly" onclick="AstraApp.setDraftTone('friendly', this)">Warm & Collaborative</button>
+                      <button class="tone-btn" data-tone="direct" onclick="AstraApp.setDraftTone('direct', this)">Concise & Urgent</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="draft-header-flex">
+                      <label>Generated Email Draft</label>
+                      <button class="text-btn" onclick="AstraApp.copyDraftText()">
+                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <span id="copyBtnText">Copy to Clipboard</span>
+                      </button>
+                    </div>
+                    <textarea id="aiDraftOutput" class="draft-textarea" rows="8" placeholder="Draft will appear here based on selected client details..."></textarea>
+                  </div>
+
+                  <div class="form-actions-right">
+                    <button class="btn btn-outline" onclick="AstraApp.generateAiDraft()">Regenerate Draft</button>
+                    <button class="btn btn-primary" onclick="AstraApp.createTaskFromDraft()">Save as Follow-up Task</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div> <!-- /content-body -->
+    </main>
+  </div> <!-- /app-layout -->
+
+  <!-- ==============================================
+       MODALS
+       ============================================== -->
+
+  <!-- 1. Customer Modal -->
+  <div id="customerModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="customerModalTitle">Add New Customer</h3>
+        <button class="icon-btn" onclick="AstraApp.closeModal('customerModal')">&times;</button>
+      </div>
+      <form id="customerForm" onsubmit="AstraApp.saveCustomer(event)">
+        <input type="hidden" id="customerId">
+        <div class="modal-body">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Contact Name *</label>
+              <input type="text" id="custName" required placeholder="e.g. Sarah Jenkins">
+            </div>
+            <div class="form-group">
+              <label>Company Name *</label>
+              <input type="text" id="custCompany" required placeholder="e.g. Apex Global Technologies">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Work Email *</label>
+              <input type="email" id="custEmail" required placeholder="e.g. sarah@apextech.com">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="custPhone" placeholder="e.g. +1 (555) 349-2041">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Customer Tier</label>
+              <select id="custStatus">
+                <option value="active">Active Client</option>
+                <option value="vip">⭐ VIP Client</option>
+                <option value="prospect">Prospect</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Total Spend ($)</label>
+              <input type="number" id="custSpend" min="0" step="100" placeholder="0">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Notes & Strategy</label>
+            <textarea id="custNotes" rows="3" placeholder="Key objectives, renewal date, preferences..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="AstraApp.closeModal('customerModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Lead Modal -->
+  <div id="leadModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="leadModalTitle">Add Sales Lead Deal</h3>
+        <button class="icon-btn" onclick="AstraApp.closeModal('leadModal')">&times;</button>
+      </div>
+      <form id="leadForm" onsubmit="AstraApp.saveLead(event)">
+        <input type="hidden" id="leadId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Deal / Project Title *</label>
+            <input type="text" id="leadTitle" required placeholder="e.g. Enterprise Cloud Modernization">
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Company / Organization *</label>
+              <input type="text" id="leadCompany" required placeholder="e.g. Lumina Health Solutions">
+            </div>
+            <div class="form-group">
+              <label>Primary Contact Name</label>
+              <input type="text" id="leadContact" placeholder="e.g. Dr. Robert Chen">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Deal Value ($) *</label>
+              <input type="number" id="leadValue" required min="100" step="500" placeholder="e.g. 24000">
+            </div>
+            <div class="form-group">
+              <label>Pipeline Stage</label>
+              <select id="leadStage">
+                <option value="new">New Inquiries</option>
+                <option value="contacted">Contacted</option>
+                <option value="proposal">Proposal Sent</option>
+                <option value="negotiation">Negotiation</option>
+                <option value="won">Closed Won</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Priority</label>
+              <select id="leadPriority">
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Lead Source</label>
+              <select id="leadSource">
+                <option value="LinkedIn Outbound">LinkedIn Outbound</option>
+                <option value="Website Inbound">Website Inbound</option>
+                <option value="Client Referral">Client Referral</option>
+                <option value="Industry Conference">Industry Conference</option>
+                <option value="Direct Sales">Direct Sales</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Expected Close Date</label>
+            <input type="date" id="leadCloseDate">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="AstraApp.closeModal('leadModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Lead Deal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Appointment Modal -->
+  <div id="appointmentModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="appointmentModalTitle">Schedule Business Meeting</h3>
+        <button class="icon-btn" onclick="AstraApp.closeModal('appointmentModal')">&times;</button>
+      </div>
+      <form id="appointmentForm" onsubmit="AstraApp.saveAppointment(event)">
+        <input type="hidden" id="appointmentId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Meeting Title *</label>
+            <input type="text" id="apptTitle" required placeholder="e.g. Solution Demo & Architecture Walkthrough">
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Client / Participant Name *</label>
+              <input type="text" id="apptClient" required placeholder="e.g. Elena Vance">
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" id="apptCompany" placeholder="e.g. Vance Logistics">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Date *</label>
+              <input type="date" id="apptDate" required>
+            </div>
+            <div class="form-group">
+              <label>Time Slot *</label>
+              <input type="time" id="apptTime" required>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Meeting Type</label>
+              <select id="apptType">
+                <option value="Discovery Call">Discovery Call</option>
+                <option value="Product Demo">Product Demo</option>
+                <option value="Strategy Session">Strategy Session</option>
+                <option value="Contract Review">Contract Review</option>
+                <option value="QBR Review">Quarterly Business Review</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Meeting Platform</label>
+              <select id="apptPlatform">
+                <option value="Google Meet">Google Meet</option>
+                <option value="Zoom">Zoom</option>
+                <option value="In-Person">In-Person Office</option>
+                <option value="Phone Call">Phone Call</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Agenda / Objectives</label>
+            <textarea id="apptNotes" rows="2" placeholder="Key talking points or target outcomes..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="AstraApp.closeModal('appointmentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Schedule Meeting</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Payment / Invoice Modal -->
+  <div id="paymentModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="paymentModalTitle">Record Payment / Invoice</h3>
+        <button class="icon-btn" onclick="AstraApp.closeModal('paymentModal')">&times;</button>
+      </div>
+      <form id="paymentForm" onsubmit="AstraApp.savePayment(event)">
+        <input type="hidden" id="paymentId">
+        <div class="modal-body">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Invoice Number *</label>
+              <input type="text" id="payInvoiceNum" required placeholder="e.g. INV-2026-088">
+            </div>
+            <div class="form-group">
+              <label>Client / Company *</label>
+              <input type="text" id="payClient" required placeholder="e.g. Apex Global">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Amount ($) *</label>
+              <input type="number" id="payAmount" required min="10" step="50" placeholder="e.g. 8500">
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select id="payStatus">
+                <option value="paid">Paid</option>
+                <option value="pending">Pending</option>
+                <option value="overdue">Overdue</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Due Date *</label>
+              <input type="date" id="payDueDate" required>
+            </div>
+            <div class="form-group">
+              <label>Payment Method</label>
+              <select id="payMethod">
+                <option value="Wire Transfer">Wire Transfer</option>
+                <option value="Stripe / Card">Stripe / Credit Card</option>
+                <option value="ACH">ACH Direct Debit</option>
+                <option value="PayPal Business">PayPal Business</option>
+                <option value="Check">Corporate Check</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Description</label>
+            <input type="text" id="payDescription" placeholder="e.g. Q3 Software License & SLA Support">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="AstraApp.closeModal('paymentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Invoice Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Task Modal -->
+  <div id="taskModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="taskModalTitle">Add Follow-up Task</h3>
+        <button class="icon-btn" onclick="AstraApp.closeModal('taskModal')">&times;</button>
+      </div>
+      <form id="taskForm" onsubmit="AstraApp.saveTask(event)">
+        <input type="hidden" id="taskId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Task Description *</label>
+            <input type="text" id="taskTitle" required placeholder="e.g. Send revised SLA addendum to Michael Vance">
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Priority</label>
+              <select id="taskPriority">
+                <option value="urgent">Urgent</option>
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="taskCategory">
+                <option value="Follow-up">Follow-up</option>
+                <option value="Contract">Contract & Proposal</option>
+                <option value="Finance">Payment / Invoice</option>
+                <option value="Call">Call / Meeting</option>
+                <option value="Ops">Operations</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Due Date</label>
+              <input type="date" id="taskDueDate">
+            </div>
+            <div class="form-group">
+              <label>Related Account / Client</label>
+              <input type="text" id="taskRelated" placeholder="e.g. Apex Global">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="AstraApp.closeModal('taskModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script src="script.js"></script>
+</body>
+</html>
