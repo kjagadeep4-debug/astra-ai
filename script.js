@@ -1,3 +1,10 @@
+// ASTRA Backend Connection
+const ASTRA_API_URL = "https://astra-business-api.kjagadeep4.workers.dev";
+
+async function astraBackendTest() {
+  const response = await fetch(`${ASTRA_API_URL}/health`);
+  return await response.json();
+}
 /**
  * ASTRA BUSINESS AI — Core Application Logic
  * Premium, ultra-lightweight, 100% client-side business dashboard.
