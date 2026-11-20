@@ -875,7 +875,7 @@ async function astraBackendTest() {
       `).join('');
     },
 
-    saveCustomer(e) {
+    async saveCustomer(e) {
       e.preventDefault();
       const id = document.getElementById('customerId').value;
       const name = document.getElementById('custName').value.trim();
